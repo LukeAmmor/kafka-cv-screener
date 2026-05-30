@@ -1,0 +1,431 @@
+/* ─── FONTS ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600;700&family=Black+Ops+One&display=swap');
+
+/* ─── DESIGN TOKENS ─────────────────────────────────────── */
+:root {
+  /* Light theme (default) */
+  --bg-page:        #fafaf7;
+  --bg-card:        #ffffff;
+  --bg-elevated:    #ffffff;
+  --bg-subtle:      #f4f3ee;
+  --bg-input:       #ffffff;
+
+  --text-primary:   #0a0f1e;
+  --text-secondary: #4a5063;
+  --text-tertiary:  #8b8f9c;
+  --text-on-dark:   #f4f1ea;
+
+  --border-hairline: rgba(10, 15, 30, 0.08);
+  --border-soft:     rgba(10, 15, 30, 0.12);
+  --border-strong:   rgba(10, 15, 30, 0.20);
+
+  --navy-base:    #0a0f1e;
+  --navy-card:    #141a2e;
+  --navy-hover:   #1f2740;
+  --navy-deep:    #070a14;
+
+  --red-brand:    #e1251b;
+  --red-deep:     #a8190f;
+  --red-soft:     #fff5f5;
+
+  --accent-green-bg:    #dcfce7;
+  --accent-green-fg:    #15803d;
+  --accent-green-border:#86efac;
+
+  --accent-amber-bg:    #fef3c7;
+  --accent-amber-fg:    #b45309;
+  --accent-amber-border:#fcd34d;
+
+  --accent-red-bg:      #fee2e2;
+  --accent-red-fg:      #dc2626;
+  --accent-red-border:  #fca5a5;
+
+  /* Layered shadows — sharp close + soft far */
+  --shadow-sm: 0 1px 2px rgba(10, 15, 30, 0.04), 0 1px 4px rgba(10, 15, 30, 0.04);
+  --shadow-md: 0 2px 4px rgba(10, 15, 30, 0.05), 0 8px 24px rgba(10, 15, 30, 0.06);
+  --shadow-lg: 0 4px 8px rgba(10, 15, 30, 0.06), 0 20px 48px rgba(10, 15, 30, 0.10);
+  --shadow-xl: 0 8px 16px rgba(10, 15, 30, 0.08), 0 32px 80px rgba(10, 15, 30, 0.16);
+
+  --shadow-brand-sm: 0 2px 8px rgba(225, 37, 27, 0.22);
+  --shadow-brand-md: 0 4px 14px rgba(225, 37, 27, 0.32);
+  --shadow-brand-lg: 0 8px 24px rgba(225, 37, 27, 0.40);
+
+  /* Card top-edge highlight (the "polished metal" trick) */
+  --edge-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Radii */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-full: 9999px;
+}
+
+[data-theme="dark"] {
+  --bg-page:        #070a14;
+  --bg-card:        #0f1422;
+  --bg-elevated:    #141a2e;
+  --bg-subtle:      #0a0f1e;
+  --bg-input:       #0f1422;
+
+  --text-primary:   #f4f1ea;
+  --text-secondary: #a8adbc;
+  --text-tertiary:  #6b7180;
+  --text-on-dark:   #f4f1ea;
+
+  --border-hairline: rgba(244, 241, 234, 0.08);
+  --border-soft:     rgba(244, 241, 234, 0.12);
+  --border-strong:   rgba(244, 241, 234, 0.18);
+
+  --red-soft:       rgba(225, 37, 27, 0.10);
+
+  --accent-green-bg:    rgba(21, 128, 61, 0.18);
+  --accent-green-fg:    #86efac;
+  --accent-green-border:rgba(134, 239, 172, 0.30);
+
+  --accent-amber-bg:    rgba(180, 83, 9, 0.18);
+  --accent-amber-fg:    #fcd34d;
+  --accent-amber-border:rgba(252, 211, 77, 0.30);
+
+  --accent-red-bg:      rgba(220, 38, 38, 0.18);
+  --accent-red-fg:      #fca5a5;
+  --accent-red-border:  rgba(252, 165, 165, 0.30);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 1px 4px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.40), 0 8px 24px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.50), 0 20px 48px rgba(0, 0, 0, 0.40);
+  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.55), 0 32px 80px rgba(0, 0, 0, 0.55);
+
+  --edge-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ─── RESET + BASE ──────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-feature-settings: 'cv11', 'ss01';  /* Geist OpenType polish */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Tabular numbers — prevents counts/scores from jittering when they change */
+.tabular { font-variant-numeric: tabular-nums; }
+
+.app {
+  min-height: 100vh;
+}
+
+/* ─── HEADER ────────────────────────────────────────────── */
+.header {
+  background: var(--navy-base);
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  isolation: isolate;
+}
+
+/* Subtle film-grain noise overlay on the header */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* ─── BRAND ─────────────────────────────────────────────── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.brand:hover { opacity: 0.85; }
+
+.brand-logo {
+  height: 38px;
+  width: auto;
+}
+
+.brand-name {
+  font-family: 'Black Ops One', cursive;
+  font-size: 24px;
+  color: var(--red-brand);
+  letter-spacing: 2.5px;
+  text-shadow: 0 0 32px rgba(225, 37, 27, 0.25);
+}
+
+/* ─── HEADER RIGHT (tabs + theme toggle) ───────────────── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ─── TABS ──────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.tab {
+  padding: 8px 18px;
+  border: none;
+  background: transparent;
+  font-family: 'Geist', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(244, 241, 234, 0.55);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.tab:hover {
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tab.active {
+  color: var(--text-on-dark);
+  background: var(--red-brand);
+  font-weight: 600;
+  box-shadow: var(--shadow-brand-sm);
+}
+
+/* ─── THEME TOGGLE ──────────────────────────────────────── */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--text-on-dark);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ─── MAIN ──────────────────────────────────────────────── */
+.main {
+  padding: 48px 20px;
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Soft glow behind page titles — atmosphere, not decoration */
+.main::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(225, 37, 27, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .main::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(225, 37, 27, 0.12) 0%,
+    transparent 70%
+  );
+}
+
+.main > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── PAGE TITLE (editorial serif) ──────────────────────── */
+.page-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.0;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.page-title em {
+  font-style: italic;
+  color: var(--red-brand);
+}
+
+/* ─── HOVER UTILITIES ───────────────────────────────────── */
+.card-hoverable {
+  transition: transform 0.22s cubic-bezier(0.32, 0.72, 0.32, 1),
+              box-shadow 0.22s cubic-bezier(0.32, 0.72, 0.32, 1),
+              border-color 0.22s ease;
+}
+.card-hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-soft);
+}
+
+.btn-hoverable {
+  transition: transform 0.15s cubic-bezier(0.32, 0.72, 0.32, 1),
+              box-shadow 0.15s cubic-bezier(0.32, 0.72, 0.32, 1);
+}
+.btn-hoverable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-brand-lg);
+}
+.btn-hoverable:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-brand-sm);
+}
+
+.btn-secondary-hoverable {
+  transition: transform 0.15s ease,
+              box-shadow 0.15s ease,
+              background 0.15s ease,
+              border-color 0.15s ease;
+}
+.btn-secondary-hoverable:hover {
+  transform: translateY(-2px);
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-green-hoverable {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-green-hoverable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(21, 128, 61, 0.25);
+}
+
+.row-hoverable {
+  transition: background 0.15s ease;
+}
+.row-hoverable:hover {
+  background: var(--bg-subtle);
+}
+
+.row-hoverable .row-delete-btn:hover {
+  opacity: 1;
+  background: var(--accent-red-bg);
+}
+.row-hoverable:hover .row-delete-btn {
+  opacity: 0.85;
+}
+
+/* ─── ANIMATIONS ────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.fade-up { animation: fadeUp 0.5s cubic-bezier(0.32, 0.72, 0.32, 1) backwards; }
+.scale-in { animation: scaleIn 0.3s cubic-bezier(0.32, 0.72, 0.32, 1) backwards; }
+
+/* Staggered children — use .stagger-children on the parent */
+.stagger-children > * {
+  animation: fadeUp 0.5s cubic-bezier(0.32, 0.72, 0.32, 1) backwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 360ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 420ms; }
+.stagger-children > *:nth-child(n+9) { animation-delay: 480ms; }
+
+/* ─── SCROLLBAR (subtle, themed) ────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 999px;
+  border: 2px solid var(--bg-page);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* ─── SELECTION ─────────────────────────────────────────── */
+::selection {
+  background: var(--red-brand);
+  color: var(--text-on-dark);
+}
+.back-button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease !important;
+}
+.back-button:hover {
+  transform: translateX(-2px);
+  border-color: var(--border-strong) !important;
+  background: var(--bg-subtle) !important;
+}
+.back-button:hover span:first-child {
+  transform: translateX(-3px);
+}

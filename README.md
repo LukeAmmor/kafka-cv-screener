@@ -293,10 +293,9 @@ It turns an async messaging backbone into a synchronous-feeling API, without los
 
 ---
 
-## Authors
+## Author
 
 - **Amine AMMOR**
-- **Rim AKRACHE**
 
 Université Mundiapolis · Big Data course final project · 2026
 
